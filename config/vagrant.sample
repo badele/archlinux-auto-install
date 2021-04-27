@@ -1,0 +1,24 @@
+
+INSTALL_MODE=vagrant # installation mode (vagrant|host)
+
+# Disk & Partition
+DISK_TYPE=hdd # disk type (hdd|ssd)
+DISK=/dev/sda
+BOOT_PARTITION=/dev/sda1
+LUKS_PARTITION=/dev/sda2
+LUKS_PASSWORD=vagrant
+LUKS_NAME=archroot
+BTRFS_NAME=archroot
+
+# Grub
+GRUB_EFI_FALLBACK="--removable"
+GRUB_BOOT_NAME="Arch"
+
+# User & Host
+USER_NAME=vagrant
+USER_PASSWORD=vagrant
+USER_SHELL=zsh
+HOSTNAME=vagrant
+
+# Kernel
+CPU_TYPE=intel

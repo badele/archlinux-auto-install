@@ -1,0 +1,10 @@
+# Vagrant builder
+.vagrant
+packer
+packer_cache
+box
+*.iso
+*.box
+
+# Sensitive datas
+install/config
