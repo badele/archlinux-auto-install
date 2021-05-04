@@ -10,6 +10,8 @@ su $USER_NAME -c "git clone https://aur.archlinux.org/yay.git && cd yay && makep
 # Install package
 su $USER_NAME -c "yay --noconfirm -Sy ${CPU_TYPE}-ucode grub-theme-vimix linux-firmware linux mkinitcpio hdparm util-linux networkmanager openssh ansible"
 
+# Ansible
+su $USER_NAME -c "yay --noconfirm -Sy ansible python-resolvelib"
 
 # Console
 cat << EOF > /etc/vconsole.conf
@@ -54,7 +56,7 @@ chmod 000 /crypto_keyfile.bin
 {
     echo "BINARIES=(btrfsck)"
     echo "HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt lvm2 filesystems fsck btrfs)"
-    echo "FILES=\"/crypto_keyfile.bin\""
+    echo "FILES=(/crypto_keyfile.bin)"
 } >> /etc/mkinitcpio.conf
 
 mkinitcpio -p linux

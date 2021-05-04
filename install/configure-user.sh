@@ -11,7 +11,7 @@ echo "$USER_NAME:$USER_PASSWORD" | chpasswd
 echo "$USER_NAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 
-# Configure ssh access for vagrant
+# Configure ssh access for vagrant (see https://www.vagrantup.com/docs/boxes/base#vagrant-user)
 if [ "$INSTALL_MODE" = "vagrant" ]; then
 
     mkdir /home/$USER_NAME/.ssh
