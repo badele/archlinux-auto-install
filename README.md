@@ -33,7 +33,7 @@ vagrant cloud publish badele/ansiblearch ${ARCHVERSION} virtualbox box/ansiblear
 ```
 
 ## Host
-From booted archlinux live cd
+From booted archlinux live cd ([use ventoy](https://github.com/ventoy/Ventoy))
 
 ```
 # Clone
