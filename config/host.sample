@@ -1,0 +1,24 @@
+
+INSTALL_MODE=host # installation mode (vagrant|host)
+
+# Disk & Partition
+DISK_TYPE=ssd # disk type (hdd|ssd)
+DISK=/dev/nvme0n1
+BOOT_PARTITION=/dev/nvme0n1p1
+LUKS_PARTITION=/dev/nvme0n1p2
+LUKS_PASSWORD=mypassword
+LUKS_NAME=archroot
+BTRFS_NAME=archroot
+
+# Grub
+GRUB_EFI_FALLBACK="--removable"
+GRUB_BOOT_NAME="Arch"
+
+# User & Host
+USER_NAME=usernix
+USER_PASSWORD=usernix
+USER_SHELL=zsh
+HOSTNAME=hostnix
+
+# Kernel
+CPU_TYPE=intel

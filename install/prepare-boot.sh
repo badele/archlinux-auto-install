@@ -91,4 +91,4 @@ grub-mkconfig -o /boot/grub/grub.cfg
 #grub-mkconfig -o /boot/efi/EFI/grub/grub.cfg
 
 # Clean unused files
-pacman -Scc
+pacman -Scc --noconfirm

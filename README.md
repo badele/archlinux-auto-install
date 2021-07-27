@@ -36,6 +36,12 @@ vagrant cloud publish badele/ansiblearch ${ARCHVERSION} virtualbox box/ansiblear
 From booted archlinux live cd ([use ventoy](https://github.com/ventoy/Ventoy))
 
 ```
+# configure wireless
+iwctl device list
+iwctl station <device> scan
+iwctl station <device> get-networks
+iwctl station <device> connect <SSID>
+
 # Clone
 pacman -Sy git
 git clone https://github.com/badele/archlinux-auto-install.git
@@ -43,7 +49,7 @@ cd archlinux-auto-install
 
 # Set installation configuration
 cp config/xxx > install/config
-vi install/config
+vim install/config
 ./install/install.sh
 ```
 
