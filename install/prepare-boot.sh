@@ -22,12 +22,12 @@ EOF
 # Define locale
 cat << EOF > /etc/locale.gen
 en_US.UTF-8 UTF-8
-fr_FR.UTF-8 UTF-8
+${DEFAULT_LOCALE}
 EOF
 
 # Generate and assign default locale
 locale-gen
-echo "LANG=fr_FR.UTF-8" > /etc/locale.conf
+echo "LANG=${DEFAULT_LANG}" > /etc/locale.conf
 
 # Host
 echo "$HOSTNAME" > /etc/hostname

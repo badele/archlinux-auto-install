@@ -43,6 +43,7 @@ iwctl station <device> get-networks
 iwctl station <device> connect <SSID>
 
 # Clone
+rm -f /var/lib/pacman/sync/*.db
 pacman -Sy git
 git clone https://github.com/badele/archlinux-auto-install.git
 cd archlinux-auto-install
