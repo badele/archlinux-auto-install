@@ -2,6 +2,11 @@
 
 # run in main archlinux iso installed shell
 
+if [ ! -f install/config ]; then
+    echo "Please copy one sample file from config/* to install/config"
+    exit 1
+fi
+
 set -o allexport; source install/config; set +o allexport
 
 #######################################
