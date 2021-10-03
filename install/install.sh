@@ -48,7 +48,7 @@ if [ "$DISK_TYPE" = "ssd" ]; then
     BTRFS_SSD_OPTION="ssd,"
 fi
 
-opts_btrfs="${BTRFS_SSD_OPTION}defaults,noatime,nodiratime,compress=zstd"
+opts_btrfs="${BTRFS_SSD_OPTION}defaults,noatime,nodiratime,compress-force=zstd"
 mount -o $opts_btrfs /dev/mapper/$LUKS_NAME /mnt
 
 # Create BTRFS partitions
