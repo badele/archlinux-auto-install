@@ -21,6 +21,9 @@ Image contains :
 vagrant init badele/ansiblearch && vagrant up
 
 # From github
+export ARCHVERSION=2021.10.01
+mkdir -p ${ARCHVERSION} && wget -O ${ARCHVERSION}/archlinux-${ARCHVERSION}-x86_64.iso http://mir.archlinux.fr/iso/${ARCHVERSION}/archlinux-${ARCHVERSION}-x86_64.iso 
+# Update version and sha1 in config.pkrvars.hcl 
 packer build -var-file config.pkrvars.hcl packer.pkr.hcl
 vagrant box add --force ansiblearch file://./box/ansiblearch-virtualbox.box
 vagrant up
@@ -28,8 +31,7 @@ vagrant up
 # Push to vagrant cloud
 #vagrant cloud auth login
 ARCHVERSION=$(pcregrep -o1 'arch_version.*"(.*)"' config.pkrvars.hcl)
-vagrant cloud publish badele/ansiblearch ${ARCHVERSION} virtualbox box/ansiblearch-virtualbox.box
-# -d "A LUKS+BTRFS archlinux installation with ansible support"
+vagrant cloud publish badele/ansiblearch ${ARCHVERSION} virtualbox box/ansiblearch-virtualbox.box -d "A LUKS+BTRFS ${ARCHVERSION} archlinux installation with ansible support"
 ```
 
 ## Host
@@ -67,3 +69,4 @@ Thanks to zenithar for his documentation https://blog.zenithar.org/post/2020/04/
 
 **Information for vagrant cloud project page**
 - [github archlinux-auto-install project](https://github.com/badele/archlinux-auto-install)
+
