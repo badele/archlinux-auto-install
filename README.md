@@ -23,7 +23,6 @@ vagrant init badele/ansiblearch && vagrant up
 # From github
 export ARCHVERSION=2021.10.01
 mkdir -p ${ARCHVERSION} && wget -O ${ARCHVERSION}/archlinux-${ARCHVERSION}-x86_64.iso http://mir.archlinux.fr/iso/${ARCHVERSION}/archlinux-${ARCHVERSION}-x86_64.iso 
-# Update version and sha1 in config.pkrvars.hcl 
 packer build -var-file config.pkrvars.hcl packer.pkr.hcl
 vagrant box add --force ansiblearch file://./box/ansiblearch-virtualbox.box
 vagrant up

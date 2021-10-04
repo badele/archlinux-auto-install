@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -xe
+
 # run in chrooted
 set -o allexport; source /root/tmp/install/config; set +o allexport
 

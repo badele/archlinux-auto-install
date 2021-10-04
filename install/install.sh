@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -xe
+
 # run in main archlinux iso installed shell
 
 if [ ! -f install/config ]; then
@@ -43,12 +45,7 @@ mkfs.vfat -F32 -n BOOT $BOOT_PARTITION
 mkfs.btrfs /dev/mapper/$LUKS_NAME
 
 # Mount BTRFS partition
-BTRFS_SSD_OPTION=""
-if [ "$DISK_TYPE" = "ssd" ]; then
-    BTRFS_SSD_OPTION="ssd,"
-fi
-
-opts_btrfs="${BTRFS_SSD_OPTION}defaults,noatime,nodiratime,compress-force=zstd"
+opts_btrfs="${BTRFS_OPTIONS}defaults,noatime,nodiratime"
 mount -o $opts_btrfs /dev/mapper/$LUKS_NAME /mnt
 
 # Create BTRFS partitions

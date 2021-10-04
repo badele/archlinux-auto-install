@@ -9,6 +9,7 @@ LUKS_PARTITION=/dev/nvme0n1p2
 LUKS_PASSWORD=mypassword
 LUKS_NAME=archroot
 BTRFS_NAME=archroot
+BTRFS_OPTIONS="ssd,compress-force=zstd"
 
 # Grub
 GRUB_EFI_FALLBACK="--removable"

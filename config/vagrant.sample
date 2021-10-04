@@ -9,6 +9,7 @@ LUKS_PARTITION=/dev/sda2
 LUKS_PASSWORD=vagrant
 LUKS_NAME=archroot
 BTRFS_NAME=archroot
+BTRFS_OPTIONS=""
 
 # Grub
 GRUB_EFI_FALLBACK="--removable"
