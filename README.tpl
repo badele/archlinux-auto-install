@@ -43,15 +43,7 @@ Image contains :
 ## Help(commands)
 
 ```
-archlinux-versions   List all archlinux versions
-doc-generate         Generate main Readme commands list
-help                 This help
-toolkit              Homelab toolkit(for building a homelab stack)
-vagrant-build        [ARCHVERSION] <NAME> Build vagrant box 
-vagrant-destroy      Destroy vagrant box [ARCHVERSION] <NAME>
-vagrant-push         Push vagrant box [ARCHVERSION] <NAME>
-vagrant-ssh          Connect to vagrant box [ARCHVERSION] <NAME>
-vagrant-up           Test vagrant box [ARCHVERSION] <NAME>
+${COMMANDS}
 ```
 
 ## Build

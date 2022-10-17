@@ -42,32 +42,30 @@ echo -n "${LUKS_PASSWORD}" | cryptsetup luksOpen ${LUKS_PARTITION} ${LUKS_NAME} 
 
 # Format disk
 mkfs.vfat -F32 -n BOOT $BOOT_PARTITION
-mkfs.btrfs /dev/mapper/$LUKS_NAME
+mkfs.ext4 /dev/mapper/$LUKS_NAME
 
 # Mount BTRFS partition
-opts_btrfs="${BTRFS_OPTIONS}defaults,noatime,nodiratime"
-mount -o $opts_btrfs /dev/mapper/$LUKS_NAME /mnt
+# opts_btrfs="${BTRFS_OPTIONS}defaults,noatime,nodiratime"
+# mount -o $opts_btrfs /dev/mapper/$LUKS_NAME /mnt
 
 # Create BTRFS partitions
-cd /mnt
+# cd /mnt
 
 # Create subvol
-btrfs subvolume create @
-btrfs subvolume create @/home
-btrfs subvolume create @/var
+# btrfs subvolume create @
+# btrfs subvolume create @/home
+# btrfs subvolume create @/var
 # btrfs subvolume create @/var/log
 
 # Disable copy-on-write for var
-chattr +C /mnt/@/var
+# chattr +C /mnt/@/var
 
 # umount all paritions
-cd $OLDPWD
-umount -R /mnt
+# cd $OLDPWD
+# umount -R /mnt
 
 # Mount vols
-mount -o $opts_btrfs,subvol=@ /dev/mapper/$LUKS_NAME /mnt
-mount -o $opts_btrfs,subvol=@/home /dev/mapper/$LUKS_NAME /mnt/home
-mount -o $opts_btrfs,subvol=@/var /dev/mapper/$LUKS_NAME /mnt/var
+mount /dev/mapper/$LUKS_NAME /mnt
 mkdir -p /mnt//boot/efi
 mount $BOOT_PARTITION /mnt/boot/efi
 
@@ -76,7 +74,7 @@ mount $BOOT_PARTITION /mnt/boot/efi
 #######################################
 
 # Minimal installation
-pacstrap /mnt base base-devel git lvm2 btrfs-progs efibootmgr grub grub-btrfs net-tools wireless_tools dialog wpa_supplicant
+pacstrap /mnt base base-devel git lvm2 efibootmgr grub net-tools wireless_tools dialog wpa_supplicant
 
 # Generate fstab
 genfstab -U -p /mnt >> /mnt/etc/fstab
@@ -96,3 +94,7 @@ mount --bind /root/tmp /mnt/root/tmp
 
 arch-chroot /mnt /root/tmp/install/configure-user.sh
 arch-chroot /mnt /root/tmp/install/prepare-boot.sh
+
+# Execute post-install script from ${CONFDIR} folder
+POSTINSTALL="root/tmp/install/post-installation.sh"
+test -f "/mnt/${POSTINSTALL}" && chmod +x "/mnt/${POSTINSTALL}" && arch-chroot /mnt "/${POSTINSTALL}"

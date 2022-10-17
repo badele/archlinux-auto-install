@@ -8,8 +8,6 @@ BOOT_PARTITION=/dev/sda1
 LUKS_PARTITION=/dev/sda2
 LUKS_PASSWORD=vagrant
 LUKS_NAME=archroot
-BTRFS_NAME=archroot
-BTRFS_OPTIONS=""
 
 # Grub
 GRUB_EFI_FALLBACK="--removable"
@@ -24,6 +22,4 @@ USER_NAME=vagrant
 USER_PASSWORD=vagrant
 USER_SHELL=zsh
 HOSTNAME=vagrant
-
-# Kernel
-CPU_TYPE=intel
+PACKAGES="intel-ucode grub-theme-vimix linux-firmware linux mkinitcpio hdparm util-linux networkmanager openssh nix"

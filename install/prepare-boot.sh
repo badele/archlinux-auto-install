@@ -3,15 +3,16 @@
 # run in chrooted
 set -o allexport; source /root/tmp/install/config; set +o allexport
 
+# Init GPG keys
+pacman-key --init
+pacman-key --populate
+
 # Install Yay
 cd /tmp
 su $USER_NAME -c "git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -sri --noconfirm"
 
 # Install package
-su $USER_NAME -c "yay --noconfirm -Sy ${CPU_TYPE}-ucode grub-theme-vimix linux-firmware linux mkinitcpio hdparm util-linux networkmanager openssh ansible"
-
-# Ansible
-su $USER_NAME -c "yay --noconfirm -Sy ansible python-resolvelib"
+su $USER_NAME -c "yay --noconfirm -Sy ${PACKAGES}"
 
 # Console
 cat << EOF > /etc/vconsole.conf
@@ -42,8 +43,6 @@ if [ "$DISK_TYPE" = "ssd" ]; then
 fi
 
 systemctl enable NetworkManager.service
-# systemctl enable systemd-networkd.service
-# systemctl enable systemd-resolved.service
 systemctl enable sshd.service
 
 
@@ -54,8 +53,8 @@ chmod 000 /crypto_keyfile.bin
 
 # Kernel
 {
-    echo "BINARIES=(btrfsck)"
-    echo "HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt lvm2 filesystems fsck btrfs)"
+    echo "BINARIES=(fsck)"
+    echo "HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt lvm2 filesystems fsck)"
     echo "FILES=(/crypto_keyfile.bin)"
 } >> /etc/mkinitcpio.conf
 
@@ -69,7 +68,7 @@ GRUB_DISTRIBUTOR="${GRUB_BOOT_NAME}"
 GRUB_CMDLINE_LINUX_DEFAULT="cryptdevice=UUID=${LUKS_UUID}:$LUKS_NAME"
 GRUB_CMDLINE_LINUX=""
 #GRUB_SAVEDEFAULT=true
-GRUB_PRELOAD_MODULES="btrfs part_gpt part_msdos"
+GRUB_PRELOAD_MODULES="part_gpt part_msdos"
 GRUB_TERMINAL_INPUT=at_keyboard
 LANG=fr_FR
 GRUB_GFXMODE=auto

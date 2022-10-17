@@ -3,8 +3,9 @@
 packer
 packer_cache
 box
-*.iso
+.iso
 *.box
 
 # Sensitive datas
 install/config
+install/post-installation.sh

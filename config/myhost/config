@@ -8,8 +8,6 @@ BOOT_PARTITION=/dev/nvme0n1p1
 LUKS_PARTITION=/dev/nvme0n1p2
 LUKS_PASSWORD=mypassword
 LUKS_NAME=archroot
-BTRFS_NAME=archroot
-BTRFS_OPTIONS="ssd,compress-force=zstd"
 
 # Grub
 GRUB_EFI_FALLBACK="--removable"
@@ -24,6 +22,4 @@ USER_NAME=usernix
 USER_PASSWORD=usernix
 USER_SHELL=zsh
 HOSTNAME=hostnix
-
-# Kernel
-CPU_TYPE=intel
+PACKAGES="intel-ucode grub-theme-vimix linux-firmware linux mkinitcpio hdparm util-linux networkmanager openssh"
